@@ -1,5 +1,5 @@
-import { login, register } from './auth.controller'
 import { createRouter } from '~/common/http/router'
+import { login, register } from './auth.controller'
 
 export const authRoutes = createRouter()
 
