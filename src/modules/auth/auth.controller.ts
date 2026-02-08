@@ -1,8 +1,8 @@
-import { NotFoundException, UnauthorizedException } from '~/common/http/exception'
-import { env } from '~/common/const/credential'
-import { Request, Response } from 'express'
 import * as bcrypt from 'bcrypt'
+import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
+import { env } from '~/common/const/credential'
+import { NotFoundException, UnauthorizedException } from '~/common/http/exception'
 import { userService } from '../user/user.service'
 
 export const register = async (req: Request) => {
