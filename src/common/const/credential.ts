@@ -1,7 +1,7 @@
-import { configDotenv } from 'dotenv';
-import z from 'zod';
+import { configDotenv } from 'dotenv'
+import z from 'zod'
 
-configDotenv();
+configDotenv()
 
 const envSchema = z.object({
   CORS_ORIGIN: z.string().min(1, 'CORS_ORIGIN is required'),
@@ -11,6 +11,6 @@ const envSchema = z.object({
 
   GOOGLE_CLIENT_ID: z.string().min(1, 'GOOGLE_CLIENT_ID is required'),
   GOOGLE_CLIENT_SECRET: z.string().min(1, 'GOOGLE_CLIENT_SECRET is required'),
-});
+})
 
-export const env = envSchema.parse(process.env);
+export const env = envSchema.parse(process.env)

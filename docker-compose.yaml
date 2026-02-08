@@ -1,14 +1,11 @@
-version: "3.9"
-
 services:
   postgres:
-    image: postgres:16
-    container_name: boilerplate_express
-    restart: always
+    image: postgres:15
+    restart: no
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: postgress_pass
-      POSTGRES_DB: db_express
+      POSTGRES_USER: boilerplate_express
+      POSTGRES_PASSWORD: boilerplate_express
+      POSTGRES_DB: db_boilerplate_express
     ports:
       - "5432:5432"
     volumes:

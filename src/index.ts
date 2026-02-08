@@ -1,39 +1,38 @@
-import { ErrorZodValidation } from "./common/middleware/zod.middleware";
-import { handlerException } from "./common/middleware/handler.middleware";
-import { logRequest } from "./common/middleware/log.middleware";
-import type { User } from "~/modules/user/schema/users.schema";
-import { env } from "./common/const/credential";
-import type { CorsOptions } from "cors";
+import { ErrorZodValidation } from './common/middleware/zod.middleware'
+import { handlerException } from './common/middleware/handler.middleware'
+import { logRequest } from './common/middleware/log.middleware'
+import { env } from './common/const/credential'
+import type { CorsOptions } from 'cors'
 import cookieParser from 'cookie-parser'
-import { routes } from "./routes";
-import express from "express";
-import cors from "cors";
+import { routes } from './routes'
+import express from 'express'
+import cors from 'cors'
+import { User } from 'generated/prisma/client'
 
-declare module "express" {
+declare module 'express' {
   interface Request {
-    user?: User;
+    user?: User
   }
 }
 
 const corsOption: CorsOptions = {
-  // origin: env.CORS_ORIGIN,
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  origin: env.CORS_ORIGIN,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
-};
+}
 
-const app = express();
+const app = express()
 app.use(cookieParser(env.COOKIE_SECRET))
-app.use(cors(corsOption));
-app.use(express.json());
-app.use(logRequest);
+app.use(cors(corsOption))
+app.use(express.json())
+app.use(logRequest)
 
-app.use("/api", routes);
+app.use('/api', routes)
 
-app.use(handlerException);
-app.use(ErrorZodValidation);
+app.use(handlerException)
+app.use(ErrorZodValidation)
 
-const PORT = 4000;
+const PORT = 4000
 app.listen(PORT, () => {
-  console.log(`⚡[express]: Application running in http://localhost:${PORT}!`);
-});
+  console.log(`⚡[express]: Application running in http://localhost:${PORT}!`)
+})

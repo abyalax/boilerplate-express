@@ -1,11 +1,12 @@
-import * as esbuild from "esbuild";
+import * as esbuild from 'esbuild'
 
 await esbuild.build({
-  entryPoints: ["src/index.ts"],
-  outfile: "build/server.cjs",
+  entryPoints: ['src/index.ts'],
+  outfile: 'build/server.cjs',
   bundle: true,
-  platform: "node",
-  format: "cjs",
-  alias: { "~": "src" },
+  platform: 'node',
+  format: 'iife',
+  alias: { '~': 'src' },
+  external: ['bcrypt'],
   plugins: [],
-});
+})
