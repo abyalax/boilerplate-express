@@ -8,13 +8,27 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": [
+        "src/*"
+      ]
     },
+    "types": [
+      "node",
+      "jest"
+    ],
     "outDir": "./dist",
     "rootDir": ".",
     "removeComments": true,
     "sourceMap": false
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "build", "src/generated/prisma", "src/generated/prisma/runtime"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "src/generated/prisma",
+    "src/generated/prisma/runtime"
+  ]
 }

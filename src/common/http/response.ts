@@ -16,13 +16,11 @@ export const withResponse = (handler: Handler): Handler => {
       let status = 'success'
       let message = 'Success'
       let data = result
-      let pagination = undefined
 
       if ('statusCode' in result) statusCode = result.statusCode
       if ('status' in result) status = result.status
       if ('message' in result) message = result.message
       if ('data' in result) data = result.data
-      if ('pagination' in result) pagination = result.pagination
 
       if (data && typeof data === 'object' && !Array.isArray(data)) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -35,7 +33,6 @@ export const withResponse = (handler: Handler): Handler => {
         status,
         message,
         data,
-        pagination,
       })
     } catch (err) {
       next(err)

@@ -2,18 +2,11 @@ import cookieParser from 'cookie-parser'
 import type { CorsOptions } from 'cors'
 import cors from 'cors'
 import express from 'express'
-import { User } from 'generated/prisma/client'
 import { env } from './common/const/credential'
 import { handlerException } from './common/middleware/handler.middleware'
 import { logRequest } from './common/middleware/log.middleware'
 import { ErrorZodValidation } from './common/middleware/zod.middleware'
 import { routes } from './routes'
-
-declare module 'express' {
-  interface Request {
-    user?: User
-  }
-}
 
 const corsOption: CorsOptions = {
   origin: env.CORS_ORIGIN,
@@ -27,15 +20,13 @@ app.use(cors(corsOption))
 app.use(express.json())
 app.use(logRequest)
 
-app.use('/greet', () => 'Work as well')
+app.get('/greet', (req, res) => {
+  res.status(200).json({ message: 'Hello' })
+})
+
 app.use('/api', routes)
 
 app.use(handlerException)
 app.use(ErrorZodValidation)
-
-const PORT = 4000
-app.listen(PORT, () => {
-  console.log(`⚡[express]: Application running in http://localhost:${PORT}`)
-})
 
 export default app

@@ -1,20 +1,19 @@
-import { Role, RolePermissions } from 'generated/prisma/client'
-import { Permission, User } from './user.type'
+import { Permissions, Role, RolePermissions, User } from 'generated/prisma/client'
 
-type UserRoles = User & {
+export type UserWithRelations = User & {
   user_roles: {
     role: {
       role_permissions: ({
-        permission: Permission
+        permission: Permissions
       } & RolePermissions)[]
     } & Role
   }[]
 }
 
 export const UserMapper = {
-  toDTO: (user: UserRoles): User => {
+  toDTO: (user: UserWithRelations) => {
     const roles: Role[] = []
-    const permissionsMap = new Map<number, Permission>()
+    const permissionsMap = new Map<number, Permissions>()
 
     user.user_roles.forEach((ur) => {
       const role = ur.role

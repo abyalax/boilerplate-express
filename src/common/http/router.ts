@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { withResponse } from './response'
 import type { Handler } from './response'
+import { withResponse } from './response'
 
 export function createRouter(): Router {
   const router = Router()

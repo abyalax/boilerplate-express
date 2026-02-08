@@ -49,11 +49,31 @@ Ini akan mengeksekusi file `build/server.cjs`.
 
 ## Linting
 
-Untuk memeriksa code style menggunakan ESLint:
+Untuk memeriksa code style menggunakan Biome:
 
 ```bash
 pnpm run lint
 ```
+
+---
+
+## Testing
+
+Untuk menjalankan rangkaian pengujian (unit testing) menggunakan Bun Test:
+
+```bash
+# Menjalankan semua test
+bun test
+
+# Menjalankan test secara spesifik
+bun test tests/app.test.ts
+
+# Menjalankan test dengan mode watch (otomatis rerun saat ada perubahan)
+bun test --watch
+
+```
+
+> **Catatan:** Pastikan server tidak sedang berjalan di port yang sama saat menjalankan pengujian jika kamu menggunakan `app.listen` secara global. Bun Test akan mendeteksi file `.test.ts` atau `.spec.ts` secara otomatis.
 
 ---
 
@@ -116,19 +136,12 @@ src/
 │   │   ├── auth.controller.ts   # Logic endpoint auth
 │   │   ├── auth.routes.ts       # Daftar route auth
 │   │
-│   ├── division/
-│   │   ├── division.controller.ts
-│   │   ├── division.routes.ts
-│   │
-│   ├── employee/
-│   │   ├── employee.controller.ts
-│   │   ├── employee.routes.ts
-│   │
 │   └── user/
 │       ├── user.controller.ts
 │       ├── user.routes.ts
 │
 ├── index.ts                     # Entry point server (Express app)
+├── app.ts                       # Entry app for testing (Express app)
 └── routes.ts                    # Register seluruh module route
 ```
 
@@ -199,7 +212,7 @@ Berikut penjelasan masing-masing skrip:
 
 ```jsonc
 "scripts": {
-  "lint": "eslint .",                            // Jalankan ESLint
+  "lint": "biome lint --write",                            // Jalankan Biome lint
   "start": "node build/server.cjs",              // Jalankan server hasil build
   "dev": "npx tsx watch src/index.ts",           // Development mode (auto reload)
   "compile": "npx tsc && npx tsc-alias && node extension.js", // Compile TS + perbaiki alias
