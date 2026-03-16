@@ -6,4 +6,4 @@ import { userRoutes } from './modules/user/user.routes'
 export const routes = createRouter()
 
 routes.use('/', authRoutes)
-routes.use('/', userRoutes)
+routes.use('/', userRoutes) // add AuthMiddleware here to protect

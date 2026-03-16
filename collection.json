@@ -1,0 +1,58 @@
+{
+  "name": "Boilerplate",
+  "version": "1",
+  "items": [
+    {
+      "name": "Auth",
+      "items": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"admin_pass\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/register",
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"username\": \"newuser\",\n  \"email\": \"client@gmail.com\",\n  \"password\": \"client_pass\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "items": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users",
+            "headers": [
+              { "name": "Authorization", "value": "Bearer {{token}}" }
+            ]
+          }
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/profile",
+            "headers": [
+              { "name": "Authorization", "value": "Bearer {{token}}" }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
